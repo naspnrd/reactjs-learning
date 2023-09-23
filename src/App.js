@@ -16,6 +16,7 @@ import Error from "./components/Error";
 import RestaurantMenu from "./components/restaurantMenu";
 import Footer from "./components/Footer";
 import Cart from "./components/Cart";
+import Profile from "./components/Profile";
 // const heading = React.createElement(
 //     "h1",
 //     {
@@ -196,8 +197,19 @@ const appRouter = createBrowserRouter([
                 element: <Body />
             },
             {
-                path: "/about",
-                element: <About />
+                // slash(/) means from the root, tells that its from the root
+                path: "/about", // parentPath/{path} => localhost:1234/about
+                element: <About />,
+                children: [
+                    {
+                        // here it means from the children of root
+                        // but if we use /profile then it means localhost:1234/profile
+                        // and it will throw error
+
+                        path: "profile",
+                        element: <Profile /> // parentPath/{path} => localhost:1234/about/profile
+                    }
+                ]
             },
             {
                 path: "/contact",
